@@ -1,7 +1,8 @@
 
-
+import "./App.css"
 import Header from './Client/components/header/header'
 import Router from "./Routes/routes"
+
 function App() {
   return (
     <div className="App">

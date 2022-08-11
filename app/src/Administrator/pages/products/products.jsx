@@ -2,42 +2,103 @@ import Axios from "axios";
 import React from "react";
 import { useEffect, useState } from "react";
 import Dashboard from "../products";
-
+import "./product.css"
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const [name,setName]=useState("");
+  const [prize,setPrize]=useState("");
+  const [description,setDescription]=useState("");
+  const [upload,setUpload]=useState({img_products:""});
+  const [categories,setCategories]=useState([]);
+  const [category,setCategory]=useState("");
+  const [dropdown,setDropdown]=useState("Elegir Una");
 
+  const addProduct = () =>{
+    const formData=new FormData();
+    formData.append("name",name);
+    formData.append("price",prize);
+    formData.append("description",description);
+    formData.append('category',category)
+    formData.append('myFile',upload.img_products)
+
+      Axios.post("http://localhost:3001/product",formData,{}
+      ).then(response =>{
+
+      })
+  }
+
+  const deleteProduct=(value,filename) =>{
+
+    
+    const deleteproduct = products.filter((item) => item._id !== value)
+
+    setProducts(deleteproduct)
+
+    console.log(products)
+    
+    Axios.delete(`http://localhost:3001/product/${value}/${filename}`)
+    .then(response =>{
+
+    })
+
+     
+  }
+
+  const onFileChange=(e)=>{
+
+    setUpload({img_products:e.target.files[0]})
+
+  }
+
+  const changeCategory=(e)=>{
+
+    setCategory(e.target.id);
+    setDropdown(e.target.innerHTML);
+
+    
+  }
+
+  
   useEffect(() => {
+    Axios.get("http://localhost:3001/product/categories").then((response) => {
+      setCategories(response.data.categories);
+    });
     Axios.get("http://localhost:3001/product").then((response) => {
       setProducts(response.data.products);
     });
-    console.log(products);
+
+    
+    
   }, []);
+
+  
   return (
     <Dashboard>
-      <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      <button className="button_add btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
         ADD +
       </button>
-      <table class="table">
-        <thead>
+      <div className="container_table-products">
+      <table className="table-products table table-responsive">
+        <thead className="table__thead">
           <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Descripcion</th>
-            <th scope="col">Acciones</th>
+            <th className="table__thead-column-number"scope="col">#</th>
+            <th className="table__thead-column-name"scope="col">Nombre</th>
+            <th className="table__thead-column-prize" scope="col">Precio</th>
+            <th className="table__thead-column-description" scope="col">Descripcion</th>
+            <th className="table__thead-column-actions"scope="col">Acciones</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="table__tbody">
           {products.map((value, index) => {
             return (
               <tr>
                 <th scope="row">{index + 1}</th>
-                <td>{value.name}</td>
-                <td>{value.price}</td>
-                <td>{value.description}</td>
-                <td>
-                    <button class="btn btn-primary">Eliminar</button>
-                  <button class="btn btn-danger">Eliminar</button>
+                <td className="table__tbody-name">{value.name}</td>
+                <td className="table__tbody-prize">{value.price}</td>
+                <td className="table__tbody-description">{value.description}</td>
+                <td className="table__tbody-actions">
+                    <button className="btn btn-primary"><i className="fas fa-arrows-rotate"></i></button>
+                  <button className="btn btn-danger" onClick={e=>deleteProduct(value._id,value.file_img)}><i className="fas fa-trash-can"></i></button>
                 </td>
               </tr>
             );
@@ -45,36 +106,90 @@ const Products = () => {
         </tbody>
       </table>
 
+      </div>
+      
+
       <div
-        class="modal fade"
+        className="modal_addproduct modal fade"
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">
-                Modal title
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="exampleModalLabel">
+                AÑADIR PRODUCTO
               </h5>
               <button
                 type="button"
-                class="btn-close"
+                className="modalclose btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
+               
               ></button>
             </div>
-            <div class="modal-body">...</div>
-            <div class="modal-footer">
+            <div className="modal-body">
+
+              <form >
+                <div className="form__div-input">
+                  <label className="form-label">Nombre</label>
+                <input className="form-control" placeholder="Nombre"required
+                 onChange={e=>setName(e.target.value)}/>
+                </div>
+                <div className="form__div-input dropdown" >
+                <label className="form-label">Categoria</label>
+                  <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {dropdown}
+                  </button>
+                  <ul className="form-control dropdown-menu">
+                    {
+                          categories.map(value =>{
+                              
+                            return(
+                              <li><a className="dropdown-item" id={value._id} onClick={changeCategory} >{value.name}</a></li>
+
+                            );
+                          }
+                              
+                          
+                          
+                        )
+                    }
+                    
+                  </ul>
+                </div>
+                <div className="form__div-input">
+                <label className="form-label">Precio</label>
+                <input className="form-control" placeholder="Precio" required
+                 onChange={e=>setPrize(e.target.value)}/>
+                </div>
+                <div className="form__div-input">
+                <label className="form-label">Imagen</label>
+                <input className="form-control"type="file"required onChange={onFileChange}/>
+                 
+                </div>
+
+                <div className="form__div-input">
+                <label className="form-label">Descripcion</label>
+               <textarea className="form-control"
+                onChange={e=>setDescription(e.target.value)}></textarea>
+                </div>
+                
+                
+                
+              </form>
+            </div>
+            <div className="modal-footer">
               <button
                 type="button"
-                class="btn btn-secondary"
+                className="btn btn-secondary"
                 data-bs-dismiss="modal"
               >
                 Close
               </button>
-              <button type="button" class="btn btn-primary">
+              <button type="button" onClick={addProduct}className="btn btn-primary">
                 Save changes
               </button>
             </div>
