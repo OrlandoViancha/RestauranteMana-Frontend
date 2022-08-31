@@ -15,11 +15,8 @@ export default class List extends React.Component {
     return(
 
         <Product
-                  key={product._id}
-                  id={product._id}
-                  name={product.name}
-                  price={product.price}
-                  file_img={product.file_img}
+          key={product._id}
+          product={product}
          />
     )
                 
