@@ -4,13 +4,8 @@ import "./registrer.css"
 import Axios from "axios";
 const Registrer=()=>{
 
-    const [first_name,setFirstName]=useState("");
-    const [second_name,setSecondName]=useState("");
-    const [last_name,setLastName]=useState("");
-    const [cedula,setCedula]=useState("");
+    const [name,setName]=useState("");  
     const [email,setEmail]=useState("");
-    const [direction,setDirection]=useState("");
-   
     const [username,setUsername]=useState("");
     const [password,setPassword]=useState("");
 
@@ -20,21 +15,19 @@ const Registrer=()=>{
         document.getElementById("footer").style.display = "none";
       }, []);
 
-    const registrer=()=>{
-
+    const registrer=(e)=>{
+        e.preventDefault();
         Axios.post("http://localhost:3001/registrer",{
 
-            cc:cedula,
-            first_name:first_name,
-            second_name:second_name,
-            lastname:last_name,
-            direction:direction,
+            name:name,
             email:email,
             name_user:username,
             password:password,
             type_user:1
 
-        }).then(response=>{console.log(response.data)})
+        }).then(response=>{
+            window.location.href="./login"
+        })
 
 
     }
@@ -54,7 +47,7 @@ const Registrer=()=>{
 
                 <div className="container-form">
 
-                    <form>
+                    <form onSubmit={registrer}>
 
                         <section className="container-form__contents">
 
@@ -67,7 +60,9 @@ const Registrer=()=>{
                         <div className="input-container full_name">
 
                             <label>Nombre Completo</label>
-                            <input placeholder="" required></input>
+                            <input placeholder="" onChange={e=>{
+                                setName(e.target.value);
+                            }}required></input>
 
                         </div>
 
@@ -75,20 +70,27 @@ const Registrer=()=>{
                         <div className="input-container email">
 
                             <label>Email</label>
-                            <input placeholder="" required></input>
+                            <input placeholder="" onChange={e=>{
+                                setEmail(e.target.value);
+                            }}required></input>
 
                         </div>
 
                         <div className="input-container username">
 
                             <label>Usuario</label>
-                            <input type="email "placeholder="" required></input>
+                            <input type="email "placeholder="" 
+                            onChange={e=>{
+                                setUsername(e.target.value);
+                            }}required></input>
 
                         </div>
                         <div className="input-container password">
 
                             <label>Contraseña</label>
-                            <input type="password" placeholder="" required></input>
+                            <input type="password" placeholder="" onChange={e=>{
+                                setPassword(e.target.value);
+                            }}required></input>
                             <i className="far fa-eye-slash"></i>
                         </div>
                         

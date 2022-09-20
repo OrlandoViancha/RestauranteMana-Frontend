@@ -1,9 +1,11 @@
 import React from "react";
 import './header.css'
-
+import LoginButtons from "../login-buttons/login_buttons";
+import LogoutButton from "../logout-button/logout_button";
 import ShoppingCart from "../shopping_Cart/shopping_Cart";
+import Cookies from "universal-cookie"
 const header = () => {
-
+   const cookies= new Cookies();
    const  OpenSidebar = (e) => {
         document.getElementById("sidebar_cart-shopping-container").style.width =
           "100%";
@@ -25,17 +27,16 @@ const header = () => {
                             <li className="nav-item" role="presentation"><a className="nav-link" href="/">Home</a></li>
                             <li className="nav-item" role="presentation"><a className="nav-link" href="#">Quienes Somos</a></li>
                         </ul>
-                        <span className="navbar-text"> 
-                        <a className="login"  href="./login">LogIn</a></span>
-                        <a className="btn btn-light action-button"style={{
-                            fontFamily: "'PT Mono', sans-serif",
-                            fontWeight: "400",
-                            font: "normal",
-                        }} role="button" href="./registrer">Signup</a>
+                        {
+                            (cookies.get('username')) 
+                            ?<LogoutButton/>
+                            :<LoginButtons/>
+                        }
                        
                     </div>
                     <a onClick={OpenSidebar}><i class="fa-solid fa-bag-shopping fa-2xl"></i></a>
                 </div>
+                
                 <ShoppingCart/>
             </nav>
             <div className=" image-header container hero" id="image-header">

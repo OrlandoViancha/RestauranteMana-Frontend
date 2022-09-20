@@ -6,6 +6,7 @@ import Registrer from "../Client/pages/registrer/registrer"
 import Dashboard from "../Administrator/pages/products"
 import Products from "../Administrator/pages/products/products"
 import All_Products from '../Client/pages/products/all_products'
+import Checkout from "../Client/pages/checkout/checkout"
 const Ruta = () => {
 
   
@@ -15,6 +16,7 @@ const Ruta = () => {
         <Route path="/" exact element={<Home />}></Route>
         <Route path="/login" exact element={<Login />}></Route>
         <Route path="/all-products" exact element={<All_Products />}></Route>
+        <Route path="/checkout" exact element={<Checkout/>}></Route>
         <Route path="/registrer" exact element={<Registrer />}></Route>
         <Route path="/dashboard" exact element={<Dashboard />}></Route>
         <Route path="/dashboard/products" exact element={<Products />}></Route>

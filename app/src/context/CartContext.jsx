@@ -38,7 +38,7 @@ export const CartProvider = ({ children }) => {
         return amount*prize
   }
 
-  const Total=(to)=>{
+  const Total=()=>{
     var total=0
     cartItems.map(value=>{
       total=total+value.amount*value.price

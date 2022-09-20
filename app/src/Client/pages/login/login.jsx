@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import Axios from "axios";
 import style from "./login.css";
+import Cookies from "universal-cookie";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  
+  const cookies=new Cookies();
   useEffect(() => {
     document.getElementById("image-header").style.display = "none";
     document.getElementById("header-client").style.minHeight="15vh";
@@ -20,9 +21,16 @@ const Login = () => {
     Axios.post("http://localhost:3001/login", {
       name_user: username,
       password: password,
-    }).then((response) => {
-        if(response.data.result){
-            window.location.href="./home"
+    })
+    .then((response) => {
+      
+      if(response.data.result){
+          
+            cookies.set("name",response.data.name,{path:"/"})
+            cookies.set("username",response.data.user,{path:"/"})
+            cookies.set("email",response.data.email,{path:"/"})
+            alert(`Bienvenido ${response.data.name}`)
+            window.location.href="./"
         }
         else{
             alert("ERROR USUARIO NO EXISTENTE");
