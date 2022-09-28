@@ -8,11 +8,22 @@ export const CartProvider = ({ children }) => {
 
     return productsLocalStorage ? JSON.parse(productsLocalStorage) : [];
   });
+  const [checkoutState,setCheckoutState]=useState(()=>{
+    const state=localStorage.getItem("checkout")
 
+    return state ? JSON.parse(state):[];
+    
+})
+  
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cartItems));
     
   }, [cartItems]);
+
+  useEffect(() => {
+    console.log(checkoutState)
+    localStorage.setItem("checkout", JSON.stringify(checkoutState))
+  },[checkoutState])
 
   const addItemToCart = (product) => {
     const findItem = cartItems.find(
@@ -31,6 +42,7 @@ export const CartProvider = ({ children }) => {
         
       setCartItems([...cartItems, { ...product, amount: 1 }]);
     }
+    setCheckoutState({state:false})
   };
 
   const Subtotal=(amount,prize)=>{
@@ -51,6 +63,7 @@ export const CartProvider = ({ children }) => {
     setCartItems(
         cartItems.filter(value=>value._id!==product._id)
     )
+    setCheckoutState({state:false})
   }
 
   const ReduceAmount=(product)=>{
@@ -78,10 +91,11 @@ export const CartProvider = ({ children }) => {
               })
         )
     }
+    setCheckoutState({state:false})
   }
 
   return (
-    <CartContext.Provider value={{ cartItems, addItemToCart,Subtotal,Total,DeleteItem,ReduceAmount }}>
+    <CartContext.Provider value={{ cartItems, checkoutState,setCheckoutState,addItemToCart,Subtotal,Total,DeleteItem,ReduceAmount }}>
       {children}
     </CartContext.Provider>
   );

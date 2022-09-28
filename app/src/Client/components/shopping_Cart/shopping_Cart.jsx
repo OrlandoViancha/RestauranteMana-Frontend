@@ -62,7 +62,7 @@ const ShoppingCart = () => {
         </div>
         
         <div className="sidebar_cart-shopping_subtotal">
-          <h3>Subtotal</h3> <b>${Total(1)} COP</b>
+          <h3>Subtotal</h3> <b>${Total()} COP</b>
         </div>
         <button href="./checkout"className="btn btn-primary"><a>CHECKOUT</a></button>
       </div>
