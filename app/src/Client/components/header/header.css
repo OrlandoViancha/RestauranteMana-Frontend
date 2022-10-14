@@ -159,7 +159,7 @@
   
   .sidebar_cart-shopping{
     position: absolute;
-    min-width:280px;
+    min-width:450px;
     height:100vh;
     visibility: hidden;
     top:0;
@@ -256,7 +256,7 @@
     
     height:100%;
     width: 55%;
-
+    margin-left:10%;
 
 
   }

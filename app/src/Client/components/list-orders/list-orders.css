@@ -1,7 +1,7 @@
 .container-list_orders{
 
-    border:1px solid green;
-
+    
+    background-color: #fff;
     margin-bottom: 2%;
     padding: 2% 2%;
     align-items: left;

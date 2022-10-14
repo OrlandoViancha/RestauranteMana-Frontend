@@ -1,13 +1,13 @@
 
 .container-general{
     display:flex;
-    border: 1px solid violet;
     background-color:#eee;  
     padding-top:5%;
+    min-height: 85vh;
 }
 .container-shopping_information{
 
-    border:1px solid #000000;
+    
     width:55%;
     margin-right:auto;
     margin-left:auto;
@@ -18,7 +18,7 @@
 .container-checkout{
     width:30%;
     height: 20%;
-    border: 1px solid blue;
+    background-color: #fff;
     margin-right:auto;
     margin-left:auto;
     padding:2% 3%;

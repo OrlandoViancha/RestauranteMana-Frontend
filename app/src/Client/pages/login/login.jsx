@@ -21,11 +21,12 @@ const Login = () => {
     Axios.post("http://localhost:3001/login", {
       name_user: username,
       password: password,
-    })
+    })  
     .then((response) => {
       
       if(response.data.result){
-          
+
+            cookies.set("id",response.data.id)
             cookies.set("name",response.data.name,{path:"/"})
             cookies.set("username",response.data.user,{path:"/"})
             cookies.set("email",response.data.email,{path:"/"})

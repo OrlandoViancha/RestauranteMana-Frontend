@@ -7,6 +7,7 @@ import Dashboard from "../Administrator/pages/products"
 import Products from "../Administrator/pages/products/products"
 import All_Products from '../Client/pages/products/all_products'
 import Checkout from "../Client/pages/checkout/checkout"
+import SendOrder from "../Client/pages/send_order/send_order";
 const Ruta = () => {
 
   
@@ -20,6 +21,7 @@ const Ruta = () => {
         <Route path="/registrer" exact element={<Registrer />}></Route>
         <Route path="/dashboard" exact element={<Dashboard />}></Route>
         <Route path="/dashboard/products" exact element={<Products />}></Route>
+        <Route path="/send-order"  element={<SendOrder/>}></Route>
       </Routes>
     </Router>
   );

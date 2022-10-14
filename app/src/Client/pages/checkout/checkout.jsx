@@ -7,25 +7,27 @@ import { useContext } from "react";
 import { CartContext } from "../../../context/CartContext";
 import Axios from "axios"
 import ButtonPayload from "../../components/button-payload/button-payload";
+import Cookies from "universal-cookie"
 const Checkout=()=>{
     const {cartItems,checkoutState,setCheckoutState,Total}=useContext(CartContext);
     const [preferenceId,setPreferenceId]=useState(localStorage.getItem("preferenceId"));
+    const cookies=new Cookies()
     const Checkout=(e)=>{
         
-        
+       
         e.preventDefault();
-        Axios.post("http://localhost:3001/payload",{cartItems:cartItems})
-        .then(response=>{
-            setPreferenceId(response.data)
-            setCheckoutState({state:true})
-        })
-        
-        
-        
-        
-        
-        //document.getElementById("btn-checkout").style.display="none";
+        if(cookies.get("username")){
 
+            Axios.post("http://localhost:3001/payload",{cartItems:cartItems})
+            .then(response=>{
+                setPreferenceId(response.data)
+                setCheckoutState({state:true})
+            })
+        }
+        else{
+            alert("Debe loguearse primero")
+        }
+            
     }
     useEffect(() => {
         document.getElementById("image-header").style.display = "none";
@@ -64,7 +66,7 @@ const Checkout=()=>{
                         <div className="container-checkout_card-confirmation-total-value">${Total()}</div>
                         </div>
                         {
-                             (checkoutState.state)
+                             (checkoutState.state&&cookies.get("username"))
                              ?<ButtonPayload preferenceId={preferenceId}/>
                              :<button onClick={Checkout} id="btn-checkout"className="btn btn-primary">Confirmar Pedido</button>
                         }

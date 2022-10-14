@@ -23,7 +23,9 @@ const Products = () => {
 
       Axios.post("http://localhost:3001/product",formData,{}
       ).then(response =>{
-
+          if(response.data.result){
+            window.location.href="./products"
+          }
       })
   }
 

@@ -3,7 +3,7 @@ import { useMercadopago } from 'react-sdk-mercadopago';
 const ButtonPayload=({preferenceId})=>{
 
     const mp = useMercadopago.v2('TEST-4dfc924b-78ee-4a8d-99b0-e9944a6ec261', {
-        locale: 'en-US'
+        locale: 'es-CO'
       });
 
     useEffect(()=>{
@@ -18,6 +18,7 @@ const ButtonPayload=({preferenceId})=>{
               container: '.cho-container',
               label: 'Pagar',
             }
+            
           });
         } 
     },[mp])

@@ -64,7 +64,11 @@ const ShoppingCart = () => {
         <div className="sidebar_cart-shopping_subtotal">
           <h3>Subtotal</h3> <b>${Total()} COP</b>
         </div>
-        <button href="./checkout"className="btn btn-primary"><a>CHECKOUT</a></button>
+        <button href="./checkout"
+          onClick={e=>{
+            window.location.href="./checkout"
+          }}
+        className="btn btn-primary"><a>CHECKOUT</a></button>
       </div>
     </div>
   );
