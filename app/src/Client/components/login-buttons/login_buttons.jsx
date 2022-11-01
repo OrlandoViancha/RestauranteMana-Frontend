@@ -5,13 +5,9 @@ const Login_Buttons=()=>{
 
         <>
             <span className="navbar-text"> 
-                <a className="login"  href="./login">LogIn</a>
+                <a className="login"  href="./login">Acceder</a>
             </span>
-            <a className="btn btn-light action-button"style={{
-                            fontFamily: "'PT Mono', sans-serif",
-                            fontWeight: "400",
-                            font: "normal",
-                        }} role="button" href="./registrer">Signup
+            <a className="btn btn-light action-button" role="button" href="./registrer">Registrarse
             </a>
         </>
     )

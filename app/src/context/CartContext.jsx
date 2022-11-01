@@ -25,7 +25,8 @@ export const CartProvider = ({ children }) => {
     localStorage.setItem("checkout", JSON.stringify(checkoutState))
   },[checkoutState])
 
-  const addItemToCart = (product) => {
+
+  const addItemToCart = (product,amount) => {
     const findItem = cartItems.find(
       (productsIncart) => productsIncart._id === product._id
     );
@@ -34,13 +35,13 @@ export const CartProvider = ({ children }) => {
       setCartItems(
         cartItems.map((productInCart) => {
           if (productInCart._id === product._id) {
-            return { ...findItem, amount: findItem.amount + 1 };
+            return { ...findItem, amount: findItem.amount + amount };
           } else return productInCart;
         })
       );
     } else {
         
-      setCartItems([...cartItems, { ...product, amount: 1 }]);
+      setCartItems([...cartItems, { ...product, amount: amount }]);
     }
     setCheckoutState({state:false})
   };

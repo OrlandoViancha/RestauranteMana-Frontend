@@ -1,14 +1,16 @@
+
 .container-categories{
 
-   
+    padding: 5% 0;
     display: inline-block;
     width: 100%;
-    
-    
+    background-image: url("https://i.pinimg.com/736x/53/1f/1a/531f1adb0a03bfa0c62e5544512da105.jpg");
+    color: #fff;
 }
 .container-categories__h1{
 
     text-align: center;
+    margin-bottom: 5%;
 }
 
 .container-categories__div-product{

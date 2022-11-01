@@ -8,6 +8,7 @@ import { CartContext } from "../../../context/CartContext";
 import Axios from "axios"
 import ButtonPayload from "../../components/button-payload/button-payload";
 import Cookies from "universal-cookie"
+import WindowAlert from "sweetalert";
 const Checkout=()=>{
     const {cartItems,checkoutState,setCheckoutState,Total}=useContext(CartContext);
     const [preferenceId,setPreferenceId]=useState(localStorage.getItem("preferenceId"));
@@ -25,7 +26,12 @@ const Checkout=()=>{
             })
         }
         else{
-            alert("Debe loguearse primero")
+            WindowAlert({
+                title:"Inicio de Sesion",
+                text: "Debe loguearse primero",
+                icon: "error",
+                timer:"3000"
+              })
         }
             
     }
@@ -36,7 +42,6 @@ const Checkout=()=>{
         document.getElementById("header-client").style.backgroundImage="none";
         document.getElementById("header-client").style.background="#000";
         document.getElementById("header-client").style.color="#000";
-        document.getElementById("footer").style.display = "none";
         
       }, []);
 
@@ -55,7 +60,7 @@ const Checkout=()=>{
                     <OrderItem></OrderItem>
 
                 </ListOrders>
-                <CardDirection title=" Direccion del Cliente" description="Kra 25 No 13-69"/>  
+                <CardDirection title=" Direccion del Cliente" description="Digite la direccion"/>  
             </div>
             
                
@@ -76,7 +81,7 @@ const Checkout=()=>{
                 </div>
             
             
-           
+                
         </div>
         </>
         

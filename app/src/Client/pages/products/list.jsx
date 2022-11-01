@@ -4,7 +4,12 @@ import Product from "./product";
 export default class List extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+
+
+    }
   }
+ 
 
   CondicionalProduct(product,id){
     

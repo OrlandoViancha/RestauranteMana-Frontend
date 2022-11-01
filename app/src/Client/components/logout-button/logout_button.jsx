@@ -11,11 +11,7 @@ const Logout_Button =()=>{
     }
     return(
         <>
-            <a className="btn btn-light action-button"style={{
-                            fontFamily: "'PT Mono', sans-serif",
-                            fontWeight: "400",
-                            font: "normal",
-                        }} role="button" onClick={LogoutSession} href="./registrer">Logout
+            <a className="btn btn-light action-button" role="button" onClick={LogoutSession} href="./registrer">Logout
             </a>
         </>
     )

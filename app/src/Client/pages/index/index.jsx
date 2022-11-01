@@ -7,6 +7,7 @@ import arepa_rellena from "../../../img/image-arepa-rellena.jpg"
 import choripapa from "../../../img/imagen-choripapa.jpg"
 import choriperro from "../../../img/imagen-choriperro.png"
 import sandwich from "../../../img/imagen-sandwich.jpg"
+import ScheduleRestaurant from '../../components/section-schedule/schedule_restaurant';
 const Index=()=>{
 
 
@@ -27,7 +28,9 @@ const Index=()=>{
             <div className="container-categories__div-product"><figure><img src={salchipapa}/><div className="name"><a>MOROCHO</a></div></figure></div>
             </div>
             
-            
+            <section>
+                <ScheduleRestaurant/>
+            </section>
         </>
     )
 }

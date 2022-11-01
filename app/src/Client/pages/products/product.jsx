@@ -1,13 +1,20 @@
 import React from "react";
 import { useContext } from "react";
-import { CartContext } from "../../../context/CartContext";
+
+import { ModalProductContext } from "../../../context/ModalProductContext";
+
 
 const Product = ({product}) => {
+
+  const {setProduct}=useContext(ModalProductContext);
   var route = "http://localhost:3001/" + product.file_img;
+ 
+  const OpenModalDescription=(e)=> {
 
-  const {addItemToCart}= useContext(CartContext)
-
-
+    setProduct(product)
+    const modal=document.querySelector('.modal');
+    modal.classList.add('modal__product-description--show')
+  }
   
 
   return (
@@ -23,7 +30,10 @@ const Product = ({product}) => {
             <button
               className=" btn btn-primary list-products__content-card_info-button"
               type="button"
-              onClick={()=>addItemToCart(product)}
+              onClick={
+                OpenModalDescription
+                
+              }
             >
               AGREGAR
             </button>

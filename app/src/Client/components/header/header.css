@@ -1,5 +1,6 @@
 	
 @import url('https://fonts.googleapis.com/css2?family=Inter');
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 
 
   .header-blue {
@@ -35,8 +36,9 @@
   }
   
   .header-blue .navbar .navbar-brand {
-    font-weight: bold;
+    
     color: inherit;
+    font-family: 'Righteous', cursive;
   }
   
   .header-blue .navbar .navbar-brand:hover {
@@ -301,6 +303,14 @@
 
       display: inline;
   }
+
+  .sidebar_cart-shopping_subtotal b{
+
+    font-size:20px;
+    text-align:right;
+    position:relative;
+    left:40%;
+}
 
   .sidebar_cart-shopping button{
 

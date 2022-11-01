@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import Axios from "axios";
 import style from "./login.css";
 import Cookies from "universal-cookie";
+import WindowAlert from "sweetalert";
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -30,11 +31,29 @@ const Login = () => {
             cookies.set("name",response.data.name,{path:"/"})
             cookies.set("username",response.data.user,{path:"/"})
             cookies.set("email",response.data.email,{path:"/"})
-            alert(`Bienvenido ${response.data.name}`)
-            window.location.href="./"
+            
+              WindowAlert({
+                title:"Inicio de Sesion",
+                text: `Bienvenido ${response.data.name}`,
+                icon: "success",
+                timer:"3000"
+              })
+
+            
+            setTimeout(() => {
+
+              window.location.href="./"
+            
+          },2000)
+            
         }
         else{
-            alert("ERROR USUARIO NO EXISTENTE");
+            WindowAlert({
+              title:"Inicio de Sesion",
+              text: "Las credenciales son incorrectas",
+              icon: "error",
+              timer:"3000"
+            })
         }
     });
   };

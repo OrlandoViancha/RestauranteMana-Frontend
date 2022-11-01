@@ -4,6 +4,8 @@ import Router from "./Routes/routes";
 import { CartProvider } from "./context/CartContext";
 import { useEffect, useState } from "react";
 import Loading from "./Client/components/loading/loading";
+import { ModalProductProvider } from "./context/ModalProductContext";
+import Footer from "./Client/components/footer/footer";
 function App() {
   const [loading, setLoading] = useState(true);
 
@@ -13,6 +15,7 @@ function App() {
   return (
     <>
       <CartProvider>
+        <ModalProductProvider>
         {loading ? (
           <Loading />
         ) : (
@@ -23,11 +26,12 @@ function App() {
 
             <section>{<Router />}</section>
 
-            <footer id="footer">
-              <h1>FOOTER</h1>
+            <footer id="footer" className="footer">
+              <Footer/>
             </footer>
           </div>
         )}
+        </ModalProductProvider>
       </CartProvider>
     </>
   );

@@ -2,6 +2,7 @@ import React,{useEffect}from "react";
 import { useState } from "react";
 import "./registrer.css"
 import Axios from "axios";
+import WindowAlert from "sweetalert";
 const Registrer=()=>{
 
     const [name,setName]=useState("");  
@@ -26,7 +27,14 @@ const Registrer=()=>{
             type_user:1
 
         }).then(response=>{
-            window.location.href="./login"
+            WindowAlert({
+                title:"Inicio de Sesion",
+                text: "Registrado Correctamente",
+                icon: "success",
+                timer:"3000"
+              })
+              setTimeout(()=>{window.location.href="./login"},3000)
+            
         })
 
 
