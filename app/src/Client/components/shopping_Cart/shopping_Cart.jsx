@@ -43,7 +43,7 @@ const ShoppingCart = () => {
               <b>{value.name}</b>
               <div>
                 <button onClick={e=>ReduceAmount(value)}>-</button>
-                <input type="numbre" Value={value.amount}></input>
+                <input type="numbre" defaultValue={value.amount}></input>
                 <button onClick={e=>addItemToCart(value,1)}>+</button>
               </div>
               <b class="btn_remove" onClick={e=>DeleteItem(value)}>Remover</b>

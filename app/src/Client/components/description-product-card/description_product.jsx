@@ -45,7 +45,7 @@ const DescripitionProduct = ({product}) => {
             </div>
             <div className="modal__prize">
               <button className="btn__amount" onClick={Disamount}>-</button>
-              <input type="number" value={amount}  readonly="true"></input>
+              <input type="number" value={amount}  readOnly="true"></input>
               <button className="btn__amount"onClick={e=>{setAmount(amount+1)}}>+</button>
               <button className="btn__add btn btn-primary" onClick={()=>{
                 addItemToCart(product,amount)

@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
-import "./products.css";
+import "./dashboard.css";
 
-const Products = (props) => {
+const Dashboard = (props) => {
   useEffect(() => {
     document.getElementById("header").style.display = "none";
     document.getElementById("footer").style.display = "none";
@@ -28,13 +28,13 @@ const Products = (props) => {
               <i className="fas fa-project-diagram me-2"></i>Productos
             </a>
             <a
-              href="#"
+              href="/dashboard/report"
               className="list-group-item list-group-item-action bg-transparent second-text fw-bold"
             >
               <i className="fas fa-shopping-cart me-2"></i>Reportes
             </a>
             <a
-              href="#"
+              href="/dashboard/orders"
               className="list-group-item list-group-item-action bg-transparent second-text fw-bold"
             >
               <i className="fas fa-map-marker-alt me-2"></i>Pedidos
@@ -79,4 +79,4 @@ const Products = (props) => {
   );
 };
 
-export default Products;
+export default Dashboard;
